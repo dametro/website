@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<div class="diaryWrapper">
+  <article class="diaryBox">
+    <h1 class="lbw">{{ page.title_s | default: page.title }}</h1>
+    <br>
+    <div class="dateBlock">
+        
+      {% assign ymd = page.date | date: "%Y/%m/%d" %}
+      {% assign weekday_en = page.date | date: "%A" %}
+      {% case weekday_en %}
+        {% when "Sunday" %}
+        {% assign weekday_ja = "日曜日" %}  
+        {% when "Monday" %}
+        {% assign weekday_ja = "月曜日" %} 
+        {% when "Tuesday" %}
+        {% assign weekday_ja = "火曜日" %} 
+        {% when "Wednesday" %}
+        {% assign weekday_ja = "水曜日" %} 
+        {% when "Thursday" %}
+        {% assign weekday_ja = "木曜日" %} 
+        {% when "Friday" %}
+        {% assign weekday_ja = "金曜日" %} 
+        {% when "Saturday" %}
+        {% assign weekday_ja = "土曜日" %} 
+      {% endcase %}
+      <div class="date">
+          <span class="nobr">{{ymd}} &nbsp;</span><span class="nobr">{{weekday_ja}}</span>
+      </div>
+    </div>
+    
+
+
+    <section class="diary">{{content}}</section>
+    <hr class="hr_sunset">
+    {%include tagsOfThisPage.html %}
+  </article>
+</div>

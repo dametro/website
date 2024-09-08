@@ -1,0 +1,251 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "genNoKakuGothic_heavy";
+    src: url(../fonts/SOURCEHANSANS-VF.OTF);
+}
+:root{
+    --text-color:#0d0e0e;
+}
+
+html{
+    min-height: 100vh;
+    font-size: 62.5%;/*ブラウザのデフォルトが16pxゆえ
+                       htmlのデフォルトが10pxになる*/
+}
+
+body {
+    min-height: 100vh;
+    font-size: 1.5rem;
+    background-image: url('/assets/UIimages/bg01_purple.png');
+    background-size: cover; /* 画像が要素全体をカバーするようにする */
+    background-position: center center; /* 画像の中心を中央に配置 */
+    background-repeat: no-repeat; /* 画像の繰り返しを無効にする */
+    color: var(--text-color);
+}
+.bodyWrapper{
+    min-height: 85vh;
+}
+
+a{
+    text-decoration: none; /*リンクの下線を消す ここに書いて大丈夫か？？*/
+}
+a:hover{
+    text-decoration: underline;
+}
+/* header{
+    max-height: 180px;
+}
+.UIimage_banner{
+    height: 60%;
+    width: auto;
+}*/
+header {
+    
+    position: relative; /* ヘッダーの位置を相対的に設定 */
+    padding: 0; 
+}
+  
+header a {
+    display: inline-block; /* <a>タグのサイズをコンテンツに合わせる */
+}
+  
+header .banner-img {
+    
+    min-height: 90px; 
+    max-height: 120px;
+    height: auto; /* 高さを自動で調整しアスペクト比を維持 */
+    display: block; /* ブロック要素として表示 */
+}
+
+li{
+    list-style: none;
+}
+
+ul, ol {
+    margin-left: 0px;
+    padding-left: 1rem;
+}
+
+h1 {
+    font-family: "genNoKakuGothic_heavy";
+    font-size: 3.8rem;
+    margin: 0.5rem 0em 0em 0em; /*最も親の要素のフォントサイズが1rem 親いない...*/
+    font-smooth: never;    /*アンチエイリアス解除 非推奨らしい*/
+    -webkit-font-smoothing: none;  
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.lbw {/*この要素にJSが発動、$で<lbw_word>要素へ分割*/
+
+}
+
+.lbw_word {  
+    display: inline-block;
+}
+
+
+
+.footerLike {
+    text-align: center;
+
+}
+.footerLike a:link{
+    text-decoration: none;
+    color: var(--text-color);
+}
+.footerLike a:visited{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.footerLike span{
+  font-size: 85%;
+}
+
+.dateBlock {
+    text-align: right; /* テキストを右寄せ */
+    position: relative; /* 下線用の疑似要素の位置を相対位置に */
+}
+
+@media (min-width: 550px) {
+    .dateBlock {
+        margin-right: 9vw; 
+    }
+}
+
+.date{
+    display: inline-block;
+    text-align: left;/*文字は左寄せ(改行時にのみ役立つ)*/
+    padding: 2px 20px 0px 8px;/*下線の長さはこれによる*/
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-image: linear-gradient(90deg,
+	#7F2308 0%, #d77c22 50%, #fed97b 75%,#d77c22 100%) 1;
+    
+}
+.nobr {
+    display: inline-block;
+}
+
+
+
+
+
+.tagsOfThisPage{
+
+}
+
+.tagsOfThisPage a{
+    margin-right: 4px;
+}
+
+.textBox{
+
+}
+
+.UIimage_banner{
+    width: 40%;
+}
+
+.diary{
+    padding: 1rem 0 0 0;
+    white-space:pre-wrap;  /*テキストの半角スペース・改行をそのまま表示、折り返し自動*/
+    line-height: 1.6em;    /*↑タグ内のスぺ・改以外はすべて適用。htmlのインデントも...*/
+}
+.not_diary{
+    padding: 1rem 0 0 0;
+    line-height: 1.6em;    
+}
+
+.diaryWrapper{
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    border: solid 3px #7b7b7b83;
+    background: #ebebeb51;/*背景色*/
+
+}
+.hr_sunset{              /*水平線hr*/
+    position: relative;
+	height: 1px;
+	border-width: 0;
+	background-color: #00bcd4;
+	background-image: -webkit-linear-gradient(left,
+	#7F2308 0%, #d77c22 50%, #fed97b 75%,#d77c22 100%);
+	background-image:         linear-gradient(90deg,
+	#7F2308 0%, #d77c22 50%, #fed97b 75%,#d77c22 100%);
+}
+
+
+
+
+.sesamed-text {
+    position: relative;
+}
+.sesamed-dummy {
+    position: absolute;
+    top:0%;
+    left:50%;
+    transform: translate(-50%, -12%); /* 中央に配置し、文字の高さに合わせる */
+    font-size:0.62em;
+    color: transparent;
+    pointer-events: none; /* クリックなどのイベントを無効化 ただしctr+Cや右クリック以外は貫通 */
+    white-space: nowrap; /* テキストの改行を防ぐ */
+    user-select: none; /* テキスト選択を無効にする */
+    text-emphasis: sesame var(--text-color);
+}
+
+
+/*-----日記一覧ページ用-----*/
+
+.year-month-section {
+    margin-bottom: 2rem;
+}
+.post-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    justify-content: start;
+}
+.post-list a {
+    display: inline-block;
+    text-align: center;
+}
+  
+/*
+a {
+    text-decoration: none; 
+    color: #333; 
+}*/
+  
+  
+/*-----日記一覧ページ用   おわり-----*/
+
+/*-----タグ一覧ページ用-----*/
+#tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    max-width: 600px;
+}
+  
+.tag-item {
+    margin: 2px 5px 2px 2px;
+}
+  
+.tag-item a {
+    text-decoration: none;  /*下線ナシ*/
+    color: #007bff; /* リンクの色 */
+}
+  
+.tag-item a:hover {
+    text-decoration: underline;
+}
+  
+/*-----タグ一覧ページ用   おわり-----*/
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+---
+layout: default
+title: "{{ page.tag }} に関する記事一覧"
+---
+
+<h1>タグ: "{{ page.tag }}"</h1>
+
+<ul>
+  {% for post in site.posts %}
+    {% if post.tags contains page.tag %}
+      {% assign yyyy = post.date | slice: 0, 4 %}
+      {% assign mm = post.date | slice: 5, 2 %}
+      {% assign dd = post.date | slice: 8, 2 %}
+      {% if post.review %}
+        <li><a href="{{ post.url }}">{{ yyyy }}/{{ mm }}/{{ dd }} {{post.review}}</a></li>
+      {% else %}
+        <li><a href="{{ post.url }}">{{ yyyy }}/{{ mm }}/{{ dd }}</a></li>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</ul>
+<br>
+<br>

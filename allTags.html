@@ -1,0 +1,57 @@
+---
+permalink: /allTags.html
+layout: default
+title: タグの一覧
+---
+
+
+
+<h1>タグ一覧</h1>
+<br>
+
+<div id="tags-container">
+  {% for tag in site.tags %} 
+  {% assign tag_name = tag[0] %}
+  {% assign tag_count = tag[1] | size %}
+  <div class="tag-item" data-name="{{ tag_name }}" data-count="{{ tag_count }}">
+    {{ tag_name }} ({{ tag_count }})
+  </div>
+  {% endfor %}
+</div>
+<!-- site.tagsは{ タグ名, {記事a,記事b,...} }の3重オブジェクトコンテナ -->
+<!-- data-xxxはカスタムデータ属性（data attributes） -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // タグコンテナの要素を取得
+    const tagsContainer = document.getElementById("tags-container");
+
+    // タグ情報を配列に収集、mapでJSのオブジェクトを生成
+    // parseIntで数値に変換
+    let tagsArray = Array.from(
+      tagsContainer.getElementsByClassName("tag-item")
+    ).map(function (item) {
+      return {
+        name: item.getAttribute("data-name"),
+        count: parseInt(item.getAttribute("data-count")), 
+      };
+    });
+
+    // 記事数の降順でソート  ソート関数で
+    tagsArray.sort(function (a, b) {
+      return b.count - a.count;
+    });
+
+    // "tags-container"内の要素を全てクリアし、ソート後のタグを再配置
+    tagsContainer.innerHTML = ""; 
+    tagsArray.forEach(function (tag) {
+      let div = document.createElement("div");
+      div.className = "tag-item";
+      div.innerHTML = `<a href="/tags/tag_${tag.name}.html">${tag.name} (${tag.count}) &nbsp</a>`;
+      tagsContainer.appendChild(div);
+    });
+  });
+</script>
+
+<h2>デバッグ情報</h2>
+<p>タグの数: {{ site.tags | size }}です</p>

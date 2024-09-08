@@ -1,0 +1,50 @@
+---
+permalink: /
+title: にしびストレージ サイトトップ
+---
+<!doctype html>
+<html lang="{{ site.lang | default: "JA" }}">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>にしびストレージ サイトトップ</title>
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+    <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ '/assets/favicon.ico' | relative_url }}" type="image/x-icon">
+  </head>
+
+  <body>
+    <div class="bodyWrapper">
+      <div class="diaryWrapper">
+        <article class="diaryBox">
+          <h1>サイトトップ</h1>
+          <section class="not_diary">
+            <h2>本サイトについて</h3><br>
+            日記など。<br>
+            Jekyllを利用して作られています。<br>
+            連絡はTwitterまで。<br><br>
+            <h3><a href="/about">About(工事中)</a></h3>
+            <h3><a href="/allDiaries">日記ページ一覧</a><br></h3>
+            <h3><a href="/allTags.html">タグ一覧</a><br></h3>
+            <br>
+            <h3>最近作成されたページ</h2>
+            <!--レビュー記事はfront matterのreview:を表示、日記は"日記"と表示-->
+            <ul>
+            {% assign all_posts = site.posts %}
+            {% assign sorted_posts = all_posts | sort: "date" | reverse %}  
+            {% for post in sorted_posts limit:9 %}
+            {% if post.review %}
+              <li><a href="{{ post.url }}">{{ post.date | date: "%Y/%m/%d" }} {{post.review}}</a></li>
+            {% else %}
+              <li><a href="{{ post.url }}">{{ post.date | date: "%Y/%m/%d" }} 日記</a></li>
+            {% endif %}
+            {% endfor %}
+            </ul>
+
+          </section>
+        </article>
+      </div>
+    </div>
+    {%include footerLike.html %}
+  </body>
+</html>
